@@ -1,2 +1,3 @@
-"Be excellent to each other."
+"Be excellent to each other."  
+  
 --Bill & Ted

@@ -1,6 +1,6 @@
 # ssd1306-clock
 
-A docker image to use with a raspberry zero and the ssd1306 hat
+A docker image to use with a raspberry zero and the [https://www.adafruit.com/product/3527](piOled ssd1306 hat)
 
 ¯\\_(ツ)_/¯
 

@@ -1,0 +1,6 @@
+Adafruit-Blinka==6.15.0
+adafruit-circuitpython-ssd1306==2.12.2
+font-roboto==0.0.1
+fonts==0.0.3
+Pillow==5.4.1
+RPi.GPIO==0.7.0

@@ -1,2 +1,6 @@
 #!/bin/sh
-docker run -d --privileged --device /dev/spi.dev0.0:/dev/spi.dev0.0 --restart always --name clock promethee/ssd1306-clock:latest
+# --privileged : required to access hardware
+# -v /etc/localtime:/etc/localtime : allow to have the same timezone setting inside the container
+# --device /dev/i2c-1:/dev/i2c-1 & --device /dev/spidev0.0:/dev/spidev0.0 : required to access the PiOLED
+# --restart always : required to prevent the clock from stopping
+docker run -d --privileged -v /etc/localtime:/etc/localtime --device /dev/i2c-1:/dev/i2c-1 --device /dev/spidev0.0:/dev/spidev0.0 --restart always --name clock promethee/ssd1306-clock:latest

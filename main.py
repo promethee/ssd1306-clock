@@ -17,6 +17,11 @@ OFFSET_Y = os.environ.get('OFFSET_Y', -8)
 SHOW_DATE = "DATE"
 SHOW_TIME = "TIME"
 SHOW = os.environ.get('SHOW', SHOW_DATE)
+WAIT = dict({
+  "DATE": os.environ.get('WAIT_DATE', 1),
+  "TIME": os.environ.get('WAIT_TIME', 5),
+})
+
 
 display = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
 
@@ -59,5 +64,5 @@ time.sleep(3)
 
 while True:
   show_time()
-  time.sleep(5)
+  time.sleep(WAIT[SHOW])
   SHOW = SHOW_TIME if SHOW == SHOW_DATE else SHOW_DATE

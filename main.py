@@ -6,39 +6,58 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 import datetime
 import time
+from fonts.ttf import RobotoMedium
 
-INFO_TIME = "INFO_TIME"
-INFO_DATE = "INFO_DATE"
-info_type = INFO_DATE
-
-i2c = busio.I2C(SCL, SDA)
-
-DISPLAY_WIDTH = 128
-DISPLAY_HEIGHT = 32
-
-display = adafruit_ssd1306.SSD1306_I2C(DISPLAY_WIDTH, DISPLAY_HEIGHT, i2c)
-
+WIDTH = os.environ.get('WIDTH', 128)
+HEIGHT = os.environ.get('HEIGHT', 32)
 ROTATE = os.environ.get('ROTATE', False)
+FONT_SIZE = os.environ.get('FONT_SIZE', 40)
+OFFSET_X = os.environ.get('OFFSET_X', 0)
+OFFSET_Y = os.environ.get('OFFSET_Y', -8)
+SHOW_DATE = "DATE"
+SHOW_TIME = "TIME"
+SHOW = os.environ.get('SHOW', SHOW_DATE)
 
-def get_text(info_type):
-  return datetime.datetime.now().strftime(
-    "%H:%M" if info_type == INFO_TIME else "%a %d"
+display = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
+
+def get_text():
+  global SHOW
+  return datetime.datetime.now().astimezone(None).strftime(
+    "%H:%M" if SHOW == SHOW_TIME else "%a %d"
   )
 
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", DISPLAY_HEIGHT)
+font = ImageFont.truetype(RobotoMedium, FONT_SIZE)
 (TEXT_WIDTH, TEXT_HEIGHT) = font.getsize(get_text(INFO_TIME))
 
-im = Image.new("1", (DISPLAY_WIDTH, DISPLAY_HEIGHT), 0)
+im = Image.new("1", (WIDTH, HEIGHT), 0)
 draw = ImageDraw.Draw(im)
 
-while True:
-  text = get_text(info_type)
+def clear():
   display.fill(0)
-  draw = ImageDraw.Draw(im)
-  draw.rectangle([0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT], fill=0)
-  draw.text((0, 0), text, font=font, fill=1)
+  display.image(im)
+
+def show_time():
+  clear()
+  text = get_text()
+  draw.rectangle([0, 0, WIDTH, HEIGHT], fill=0)
+  draw.text((OFFSET_X, OFFSET_Y), text, align='center', font=font, fill=1)
   rotated_image = im.transpose(Image.ROTATE_180) if ROTATE else im
   display.image(rotated_image)
   display.show()
-  info_type = INFO_TIME if info_type == INFO_DATE else INFO_DATE
+
+def show_credits():
+  clear()
+  draw.rectangle([0, 0, WIDTH, HEIGHT], fill=0)
+  font = ImageFont.truetype(RobotoMedium, 16)
+  draw.text((0, -4), "github.com \n /promethee ", font=font, fill=1)
+  rotated_image = im.transpose(Image.ROTATE_180) if ROTATE else im
+  display.image(rotated_image)
+  display.show()
+
+show_credits()
+time.sleep(3)
+
+while True:
+  show_time()
   time.sleep(5)
+  SHOW = SHOW_TIME if SHOW == SHOW_DATE else SHOW_DATE

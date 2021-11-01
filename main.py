@@ -64,5 +64,5 @@ time.sleep(3)
 
 while True:
   show_time()
-  time.sleep(WAIT[SHOW])
   SHOW = SHOW_TIME if SHOW == SHOW_DATE else SHOW_DATE
+  time.sleep(WAIT[SHOW])

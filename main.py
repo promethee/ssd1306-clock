@@ -11,7 +11,7 @@ from fonts.ttf import RobotoMedium
 WIDTH = os.environ.get('WIDTH', 128)
 HEIGHT = os.environ.get('HEIGHT', 32)
 ROTATE = os.environ.get('ROTATE', False)
-FONT_SIZE = os.environ.get('FONT_SIZE', 40)
+FONT_SIZE = os.environ.get('FONT_SIZE', 38)
 OFFSET_X = os.environ.get('OFFSET_X', 0)
 OFFSET_Y = os.environ.get('OFFSET_Y', -8)
 SHOW_DATE = "DATE"

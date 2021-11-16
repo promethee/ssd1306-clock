@@ -10,6 +10,7 @@ import datetime
 import time
 from fonts.ttf import RobotoMedium
 
+i2c = busio.I2C(SCL, SDA)
 
 WIDTH = os.environ.get('WIDTH', 128)
 HEIGHT = os.environ.get('HEIGHT', 32)

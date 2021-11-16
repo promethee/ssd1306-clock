@@ -36,7 +36,7 @@ def get_text():
   )
 
 font = ImageFont.truetype(RobotoMedium, FONT_SIZE)
-(TEXT_WIDTH, TEXT_HEIGHT) = font.getsize(get_text(SHOW_TIME))
+(TEXT_WIDTH, TEXT_HEIGHT) = font.getsize(get_text())
 
 im = Image.new("1", (WIDTH, HEIGHT), 0)
 draw = ImageDraw.Draw(im)

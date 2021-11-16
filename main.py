@@ -75,7 +75,7 @@ show_emoji()
 time.sleep(1)
 show_credits("promethee")
 time.sleep(1)
-show_credits("@github)
+show_credits("@github")
 time.sleep(1)
 
 while True:

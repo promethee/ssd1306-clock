@@ -58,7 +58,7 @@ def show_emoji():
   clear()
   draw.rectangle([0, 0, WIDTH, HEIGHT], fill=0)
   font_smiley = ImageFont.truetype('./CODE2000.TTF', 32)
-  draw.text((0, -4), "github.com \n /promethee ", font=font, fill=1)
+  draw.text((0, -4), "¯\_(ツ)_/¯", font=font, fill=1)
   rotated_image = im.transpose(Image.ROTATE_180) if ROTATE else im
   display.image(rotated_image)
   display.show()
@@ -66,7 +66,7 @@ def show_emoji():
 def show_credits(text):
   clear()
   draw.rectangle([0, 0, WIDTH, HEIGHT], fill=0)
-  font = ImageFont.truetype(RobotoMedium, 28)
+  font = ImageFont.truetype(RobotoMedium, 24)
   draw.text((0, -4), text, font=font, fill=1)
   rotated_image = im.transpose(Image.ROTATE_180) if ROTATE else im
   display.image(rotated_image)

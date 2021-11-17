@@ -57,7 +57,7 @@ def show_time():
 def show_emoji():
   clear()
   draw.rectangle([0, 0, WIDTH, HEIGHT], fill=0)
-  font_smiley = ImageFont.truetype('./CODE2000.TTF', 32)
+  font_smiley = ImageFont.truetype('./CODE2000.TTF', 28)
   draw.text((0, -4), "¯\_(ツ)_/¯", font=font_smiley, fill=1)
   rotated_image = im.transpose(Image.ROTATE_180) if ROTATE else im
   display.image(rotated_image)

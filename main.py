@@ -57,7 +57,7 @@ def show_time():
 def show_emoji():
   clear()
   draw.rectangle([0, 0, WIDTH, HEIGHT], fill=0)
-  font_smiley = ImageFont.truetype('./CODE2000.TTF', 28)
+  font_smiley = ImageFont.truetype('./CODE2000.TTF', 26)
   draw.text((0, -4), "¯\_(ツ)_/¯", font=font_smiley, fill=1)
   rotated_image = im.transpose(Image.ROTATE_180) if ROTATE else im
   display.image(rotated_image)
@@ -73,11 +73,11 @@ def show_credits(text):
   display.show()
 
 show_emoji()
-time.sleep(1)
+time.sleep(1.5)
 show_credits("promethee")
-time.sleep(1)
+time.sleep(1.5)
 show_credits("@github")
-time.sleep(1)
+time.sleep(1.5)
 
 while True:
   SHOW = SHOW_TIME if SHOW == SHOW_DATE else SHOW_DATE
